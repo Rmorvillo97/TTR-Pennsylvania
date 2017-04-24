@@ -160,12 +160,7 @@ public class StockCards {
        westernMaryland.add(wm2);
        westernMaryland.add(wm3);
        westernMaryland.add(wm4);
-       
-       
-       
-       
-       
-       
+
    }
     
 }

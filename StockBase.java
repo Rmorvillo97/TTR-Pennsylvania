@@ -1,5 +1,4 @@
 
-package stockcards;
 
 import java.awt.Image;
 
@@ -27,14 +26,5 @@ public class StockBase {
         stockPicture = img;
     }
  
-    
-    
-  
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
     
 }
