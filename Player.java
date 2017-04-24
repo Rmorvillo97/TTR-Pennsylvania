@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +24,14 @@ public class Player {
     
     protected int numTrains;
     
+    protected Color color;
+    
     /**
      * Constructor for objects of class Player
      * 
      * @param nm, the player's name
      */
-    public Player(String nm){
+    public Player(String nm, TrainColor tc){
         name = nm;
         hand = new ArrayList<>();
         stocks = new ArrayList<>();
@@ -37,6 +40,9 @@ public class Player {
         numPoints = 0;
         numTrains = 45;
     }
+    
+    
+    
     
     
 }
