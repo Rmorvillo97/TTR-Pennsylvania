@@ -1,10 +1,10 @@
-
-
-import java.awt.Image;
-
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 /**
  *Class for handling stock cards.
- * @author je28rodr
+ * @author Javier Rodriguez
  */
 public class StockBase {
     /**
@@ -14,17 +14,23 @@ public class StockBase {
      */
     protected int share;
     protected String company;
-    protected Image stockPicture;
-    
+    protected BufferedImage stockPicture;
+
     public StockBase(int sh, String comp){
         share = sh;
         company = comp;
     }
-     public StockBase(int sh, String comp, Image img){
+
+    public StockBase(int sh, String comp, String i){
         share = sh;
         company = comp;
-        stockPicture = img;
+        
+        try{
+            stockPicture = ImageIO.read(new File("TicketToRideGraphics/Stocks/" + i));
+        }
+        catch(IOException e){
+            System.err.println("Could not read file: " + e);
+        }
     }
- 
-    
+
 }

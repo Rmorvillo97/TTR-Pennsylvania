@@ -1,12 +1,7 @@
-
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-
+import java.io.IOException;
 
 /**
  * Used to store data on the Train Cards for Ticket to Ride.
@@ -15,33 +10,34 @@ import javax.imageio.ImageIO;
  * @author ls11brun
  */
 public class TrainCard {
-    
+
     protected TrainColor color;
     private boolean isWild;
-    public Image cardImage;
-    
+    protected BufferedImage image;
+
     /**
      * Constructor for TrainCards.
      * 
      * @param c, the card's color
      * @param f, a file for the card's image
      */
-    public TrainCard(TrainColor c, File f){
+    public TrainCard(TrainColor c, String i){
         color = c;
-        
-        try {
-            cardImage = ImageIO.read(f);
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
-        
+
         if(c == TrainColor.WILD){
-           isWild = true; 
+            isWild = true; 
         }else{
             isWild = false;
         }
+
+        try{
+            image = ImageIO.read(new File("TicketToRideGraphics/TrainColors/" + i));
+        }
+        catch(IOException e){
+            System.err.println("Could not read file: " + e);
+        }
     }
-    
+
     /**
      * Used to access the isWild boolean, to find out whether the card is 
      * wild (rainbow colored) or not.
@@ -51,7 +47,7 @@ public class TrainCard {
     public boolean isWild(){
         return this.isWild;
     }
-    
+
     /**
      * Used to determine whether this object is equal to another TrainCard.
      * 
@@ -60,6 +56,9 @@ public class TrainCard {
      */
     @Override
     public boolean equals(Object other){
+        if(other == null) return false;
+        if(! (other instanceof TrainCard) ) return false;
+
         TrainCard o = (TrainCard)other;
         if(this.color == o.color){
             return true;
@@ -70,7 +69,7 @@ public class TrainCard {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.color);
+        hash = 97 * hash + java.util.Objects.hashCode(this.color);
         return hash;
     }
 }

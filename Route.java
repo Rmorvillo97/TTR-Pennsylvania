@@ -1,4 +1,7 @@
 
+import java.util.Objects;
+
+
 /**
  * Used to hold a Ticket to Ride route.
  *
@@ -72,5 +75,41 @@ public class Route {
     public int getPoints() {
         return getPoints(this.length);
     }
+    
+    
+    /**
+     * Equals method.
+     * 
+     * @param o the object to compare to
+     * @return true if o is a Route and the two are equal.
+     */
+    @Override
+    public boolean equals(Object o){
+        if(o == null) return false;
+        if(! (o instanceof Route) ) return false;
+        
+        Route other = (Route)o;
+        
+        return ( this.dest.equals(other.dest) && 
+                this.source.equals(other.source) && 
+                this.length == other.length);
+    }
 
+    
+    /**
+     * Hash Code method
+     * 
+     * @return the object's hash code
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.source);
+        hash = 83 * hash + Objects.hashCode(this.dest);
+        hash = 83 * hash + this.length;
+        return hash;
+    }
+
+    
+    
 }
